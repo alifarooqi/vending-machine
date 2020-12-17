@@ -32,7 +32,7 @@ public class Inventory<T>{
         Integer currentQuantity = inventory.get(item); // Null or int
 
         if(quantityDelivered < 1){
-            // TODO Throw an error
+            throw new IllegalArgumentException("Quantity delivered has to be greater than 0.");
         }
         else if(currentQuantity == null){
             /*
@@ -57,7 +57,7 @@ public class Inventory<T>{
     public void remove(T item){
         Integer currentQuantity = inventory.get(item); // Null or int
         if(currentQuantity == null){
-            // TODO Throw an error
+            throw new KeyNotFoundException("Item not in the inventory: " + item);
         } else{
             inventory.put(item, currentQuantity - 1); // Updating the key value pair
         }
@@ -66,12 +66,12 @@ public class Inventory<T>{
     public void remove(T item, int quantityRemoved){
         Integer currentQuantity = inventory.get(item); // Null or int
         if(currentQuantity == null){
-            // TODO Throw an error
-        } else if(quantityRemoved < 0){
-            // TODO Throw error
+            throw new KeyNotFoundException("Item not in the inventory: " + item);
+        } else if(quantityRemoved <= 0){
+            throw new IllegalArgumentException("Quantity removed has to be greater than 0.");
         }
         else if(currentQuantity < quantityRemoved){
-            // TODO Throw an error
+            throw new IllegalArgumentException("Quantity removed has to be greater than or equal to " + currentQuantity);
         }
         else{
             inventory.put(item, currentQuantity - quantityRemoved);

@@ -3,6 +3,29 @@ package com.company;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+    (enum) Product: .... [2 attrs]
+    (enum) Coins: ....   [1 attr]
+
+    HashMap:
+        Word: Meaning
+        "Hello": "Greeting..."
+
+        Key: Value
+        - T1: T2
+        --- String: Integer
+                "One": 1
+        --- Product: Integer
+                Product.PEPSI: 50
+
+
+
+
+
+
+ */
+
+
 public class Main {
 
     public static void main(String[] args) {
@@ -26,18 +49,29 @@ public class Main {
 //        System.out.println(p.getName());
 //        System.out.println(p.getPrice());
 
-        Inventory<Coins> coinsInventory = new Inventory<Coins>();
-        Inventory<Product> productInventory = new Inventory<Product>();
+//        Inventory<Coins> coinsInventory = new Inventory<Coins>();
+//        Inventory<Product> productInventory = new Inventory<Product>();
+//
+//        coinsInventory.add(Coins.FIVE);
+//        coinsInventory.add(Coins.TEN, 25);
+//        coinsInventory.add(Coins.FIVE);
+//        coinsInventory.remove(Coins.TEN);
+//        coinsInventory.add(Coins.TWENTY_FIVE);
+//        System.out.println(coinsInventory.getQuantity(Coins.FIVE));
+//        System.out.println(coinsInventory.hasItem(Coins.ONE));
+//        coinsInventory.print();
+//
+//        productInventory.add(Product.COKE);
+//        productInventory.add(Product.PEPSI, 50);
+//        productInventory.add(Product.COKE);
+//        productInventory.remove(Product.POCARI);
+//        productInventory.print();
 
-        coinsInventory.add(Coins.FIVE);
-        coinsInventory.add(Coins.TEN, 25);
-        coinsInventory.add(Coins.FIVE);
-        coinsInventory.print();
+        VendingMachine v = new VendingMachine();
+        v.displayProducts();
 
-        productInventory.add(Product.COKE);
-        productInventory.add(Product.PEPSI, 50);
-        productInventory.add(Product.COKE);
-        productInventory.print();
+
+
 
     }
 }
