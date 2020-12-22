@@ -1,7 +1,7 @@
 package com.company;
 
 // Products: Coke(6), Pepsi(8), Pocari(12)
-public enum Product {
+public enum Product implements InverntoryItemInterface {
     PEPSI("Pepsi", 8), COKE("Coke", 6), POCARI("Pocari", 12);
 
     private int price;
@@ -23,5 +23,10 @@ public enum Product {
     @Override
     public String toString(){
         return this.name + ": $" + this.price;
+    }
+
+    @Override
+    public int getValue() {
+        return this.getPrice();
     }
 }

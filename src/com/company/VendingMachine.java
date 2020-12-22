@@ -1,9 +1,9 @@
 package com.company;
 
 public class VendingMachine {
-    public Inventory<Coins> coinInventory;
-    public Inventory<Product> productInventory;
-    private Inventory<Coins> tempCoinStorage;
+    public Inventory coinInventory;
+    public Inventory productInventory;
+    private Inventory tempCoinStorage;
 
     private Product selectedProduct;
     private int selectedQuantity;
@@ -20,9 +20,9 @@ public class VendingMachine {
      */
 
     public VendingMachine(){
-        coinInventory = new Inventory<Coins>();
-        productInventory = new Inventory<Product>();
-        tempCoinStorage = new Inventory<Coins>();
+        coinInventory = new Inventory();
+        productInventory = new Inventory();
+        tempCoinStorage = new Inventory();
         selectedQuantity = 0; // Represents that quantity is not selected
 
         // Populating Coin Inventory
@@ -38,7 +38,7 @@ public class VendingMachine {
     }
 
     public void displayProducts(){
-        for (Product p : this.productInventory.inventory.keySet()){
+        for (InverntoryItemInterface p : this.productInventory.inventory.keySet()){
             if(productInventory.hasItem(p))
                 System.out.println("Product is available " + p);
         }
@@ -52,5 +52,26 @@ public class VendingMachine {
 
     public void setSelectedQuantity(int selectedQuantity) {
         this.selectedQuantity = selectedQuantity;
+    }
+
+    public void insertCoin(Coins coin){
+        this.tempCoinStorage.add(coin);
+        // Check if the value of temp storage >= the total required amount
+        int requiredAmount = this.selectedQuantity * this.selectedProduct.getPrice();
+        // Temp storage --> Coins and their quantity
+        // Iterate over all the coins and then sum up the value of coin * quantity
+        int remainingValue = requiredAmount - this.tempCoinStorage.getTotalValue();
+        if(remainingValue > 0 ){
+            System.out.println("Remaining value: " + remainingValue);
+        }
+        else if (remainingValue == 0) {
+            System.out.println("Here's your product " + this.selectedProduct.getName());
+            // Reset
+            // 1. Move Coins from tmp storage to coin inventory
+
+        }
+        else {
+
+        }
     }
 }

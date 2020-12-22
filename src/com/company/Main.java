@@ -49,7 +49,7 @@ public class Main {
 //        System.out.println(p.getName());
 //        System.out.println(p.getPrice());
 
-//        Inventory<Coins> coinsInventory = new Inventory<Coins>();
+//        Inventory coinsInventory = new Inventory();
 //        Inventory<Product> productInventory = new Inventory<Product>();
 //
 //        coinsInventory.add(Coins.FIVE);
@@ -69,6 +69,10 @@ public class Main {
 
         VendingMachine v = new VendingMachine();
         v.displayProducts();
+        v.setSelectedProduct(Product.POCARI);
+        v.insertCoin(Coins.FIVE);
+        v.insertCoin(Coins.ONE);
+        v.insertCoin(Coins.FIVE);
 
 
 

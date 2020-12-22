@@ -1,7 +1,7 @@
 package com.company;
 import java.util.HashMap;
 
-public class Inventory<T>{
+public class Inventory {
     /*
         ***JS***
         inventory is a JSON Object
@@ -11,11 +11,16 @@ public class Inventory<T>{
      ***JS***
      * let inventory = {}
      */
-    HashMap<T, Integer> inventory = new HashMap<T, Integer>();
+    HashMap<InverntoryItemInterface, Integer> inventory = new HashMap<InverntoryItemInterface, Integer>();
+    private int totalValue = 0;
+
+    public int getTotalValue() {
+        return this.totalValue;
+    }
 
     // Item: quantity
 
-    public int getQuantity(T item){
+    public int getQuantity(InverntoryItemInterface item){
         Integer quantity = inventory.get(item); // ***JS*** quantity = inventory[item]
         return quantity == null ? 0 : quantity; // Ternary operator
         /*
@@ -28,7 +33,7 @@ public class Inventory<T>{
          */
     }
 
-    public void add(T item, int quantityDelivered){
+    public void add(InverntoryItemInterface item, int quantityDelivered){
         Integer currentQuantity = inventory.get(item); // Null or int
 
         if(quantityDelivered < 1){
@@ -40,30 +45,22 @@ public class Inventory<T>{
             * inventory[item] = quantityDelivered
              */
             inventory.put(item, quantityDelivered); // Adding key value pair
+            this.totalValue += item.getValue() * quantityDelivered;
         } else {
             inventory.put(item, currentQuantity + quantityDelivered); // Updating the key value pair
+            this.totalValue += item.getValue() * quantityDelivered;
         }
     }
 
-    public void add(T item){
-        Integer currentQuantity = inventory.get(item); // Null or int
-        if(currentQuantity == null){
-            inventory.put(item, 1); // Adding key value pair
-        } else{
-            inventory.put(item, currentQuantity + 1); // Updating the key value pair
-        }
+    public void add(InverntoryItemInterface item){
+        this.add(item, 1);
     }
 
-    public void remove(T item){
-        Integer currentQuantity = inventory.get(item); // Null or int
-        if(currentQuantity == null){
-            throw new KeyNotFoundException("Item not in the inventory: " + item);
-        } else{
-            inventory.put(item, currentQuantity - 1); // Updating the key value pair
-        }
+    public void remove(InverntoryItemInterface item){
+        this.remove(item, 1);
     }
 
-    public void remove(T item, int quantityRemoved){
+    public void remove(InverntoryItemInterface item, int quantityRemoved){
         Integer currentQuantity = inventory.get(item); // Null or int
         if(currentQuantity == null){
             throw new KeyNotFoundException("Item not in the inventory: " + item);
@@ -75,10 +72,11 @@ public class Inventory<T>{
         }
         else{
             inventory.put(item, currentQuantity - quantityRemoved);
+            this.totalValue -= (item.getValue() * quantityRemoved);
         }
     }
 
-    public boolean hasItem(T item){
+    public boolean hasItem(InverntoryItemInterface item){
         int current = this.getQuantity(item);
         return current > 0;
     }
@@ -98,7 +96,7 @@ public class Inventory<T>{
 
     public void print(){
         System.out.println("*****************************");
-        for(T item : this.inventory.keySet()){
+        for(InverntoryItemInterface item : this.inventory.keySet()){
             System.out.println(item + " -> " + this.inventory.get(item));
         }
     }
