@@ -67,13 +67,39 @@ public class Main {
 //        productInventory.remove(Product.POCARI);
 //        productInventory.print();
 
+//        VendingMachine v = new VendingMachine();
+//        v.displayProducts();
+//        v.setSelectedProduct(Product.POCARI);
+//        v.insertCoin(Coins.FIVE);
+//        v.insertCoin(Coins.ONE);
+//        v.insertCoin(Coins.FIVE);
+
+
+//        Inventory coinsInventory = new Inventory();
+//        Inventory tmpStorage = new Inventory();
+//
+//        coinsInventory.add(Coins.TEN, 25);
+//        coinsInventory.add(Coins.TWENTY_FIVE, 100);
+//        coinsInventory.print();
+//
+//        tmpStorage.add(Coins.TEN, 2);
+//        tmpStorage.add(Coins.TWENTY_FIVE, 1);
+//        tmpStorage.add(Coins.FIVE, 1);
+//        tmpStorage.print();
+//
+//        coinsInventory.add(tmpStorage);
+//        coinsInventory.print();
+
         VendingMachine v = new VendingMachine();
+        v.productInventory.print();
+        v.coinInventory.print();
         v.displayProducts();
         v.setSelectedProduct(Product.POCARI);
-        v.insertCoin(Coins.FIVE);
-        v.insertCoin(Coins.ONE);
-        v.insertCoin(Coins.FIVE);
-
+        v.insertCoin(Coins.TEN); // Total paid: $5
+        v.insertCoin(Coins.ONE); // Total paid: $6
+        v.insertCoin(Coins.ONE); // Total paid: $12
+        v.productInventory.print();
+        v.coinInventory.print();
 
 
 

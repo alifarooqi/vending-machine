@@ -51,6 +51,18 @@ public class Inventory {
             this.totalValue += item.getValue() * quantityDelivered;
         }
     }
+    // tmpStorage = { Coin.25: 10, Coin.10: 5 }
+    // coinInventory = { Coin.25: 100, Coin.10: 50 }
+
+    // coinInventory.add(tmpStorage)
+    // inventory2 = { Coin.25: 110, Coin.10: 55 }
+    public void add(Inventory i){
+//        this --> coinInventory
+//        i --> tmpStorage
+        for (InverntoryItemInterface c : i.inventory.keySet()){
+            this.add(c, i.getQuantity(c));
+        }
+    }
 
     public void add(InverntoryItemInterface item){
         this.add(item, 1);

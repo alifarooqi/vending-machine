@@ -67,10 +67,20 @@ public class VendingMachine {
         else if (remainingValue == 0) {
             System.out.println("Here's your product " + this.selectedProduct.getName());
             // Reset
-            // 1. Move Coins from tmp storage to coin inventory
-
+            // 1. To deduct product from the product inventory
+            this.productInventory.remove(this.selectedProduct, this.selectedQuantity);
+            // 2. Move Coins from tmp storage to coin inventory
+            // this --> coinInventory --> add()
+            this.coinInventory.add(this.tempCoinStorage);
+            // 3. Empty the tmpStorage
+            this.tempCoinStorage.clear();
+            // this --> VendingMachine
+            // this.tempCoinStorage --> Inventory
+            // this.tempCoinStorage.clear() --> void
+            System.out.println("Thank you for shopping with us!");
         }
         else {
+            // Now we need to check if the change is there
 
         }
     }
