@@ -81,7 +81,40 @@ public class VendingMachine {
         }
         else {
             // Now we need to check if the change is there
+            remainingValue *= -1; // $32
+
+            // Check how many $25 do we need to return
+            int twentyFive = this.calculateChangeValue(Coins.TWENTY_FIVE, remainingValue);
+            remainingValue -= twentyFive * Coins.TWENTY_FIVE.getValue();
+
+            int ten = this.calculateChangeValue(Coins.TEN, remainingValue);
+            remainingValue -= ten * Coins.TEN.getValue();
+
+            int five = this.calculateChangeValue(Coins.FIVE, remainingValue);
+            remainingValue -= five * Coins.FIVE.getValue();
+
+            int one = this.calculateChangeValue(Coins.ONE, remainingValue);
+            remainingValue -= one * Coins.ONE.getValue();
+
+            if(remainingValue > 0)
+                throw new InsufficientChangeException("Not enough coins in the inventory!");
+            else{
+                System.out.println("Change is available");
+                System.out.println("$25: " + twentyFive);
+                System.out.println("$10: " + ten);
+                System.out.println("$5: " + five);
+                System.out.println("$1: " + one);
+            }
+
+
+            // TODO Do other stuff
+
+
 
         }
+    }
+
+    private int calculateChangeValue(Coins c, int remainingValue){
+        return Math.min(remainingValue % c.getValue(), this.coinInventory.getQuantity(c));
     }
 }

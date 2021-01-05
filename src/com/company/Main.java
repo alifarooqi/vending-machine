@@ -91,15 +91,10 @@ public class Main {
 //        coinsInventory.print();
 
         VendingMachine v = new VendingMachine();
-        v.productInventory.print();
-        v.coinInventory.print();
-        v.displayProducts();
         v.setSelectedProduct(Product.POCARI);
         v.insertCoin(Coins.TEN); // Total paid: $5
         v.insertCoin(Coins.ONE); // Total paid: $6
-        v.insertCoin(Coins.ONE); // Total paid: $12
-        v.productInventory.print();
-        v.coinInventory.print();
+        v.insertCoin(Coins.TWENTY_FIVE); // Total paid: $12
 
 
 
